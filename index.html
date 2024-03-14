@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1D Heat Diffusion</title>
+    <!-- Load MathJax Plotly.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- <script src="everpolate.browserified.min.js"></script> -->
+    <!-- Style -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 775px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #plot {
+            width: 100%;
+            height: 400px;
+        }
+
+        fieldset {
+            margin: 8px;
+            border: 1px solid silver;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        legend {
+            padding: 2px;
+        }
+    </style>
+    <!-- icon -->
+    <link rel="icon" type="image/x-icon"
+        href="https://images.prismic.io/plotly-marketing-website-2/798854a2-209b-4e03-959f-965613354c4f_favicon_new_white.png?auto=compress,format">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Model -->
+        <label for="model">Model:</label>
+        <select name="models" id="models">
+            <option value="1d_inf_plate">1D Infinite Plate</option>
+        </select>
+        <!-- Plot -->
+        <h1>Temperature response plot</h1>
+        <div id="plot"></div>
+        <fieldset>
+            <legend>Line Parameters</legend>
+            <label for="x_r_spinbox">Relative x (x/L):</label>
+            <input type="number" id="x_r_spinbox" min="0" max="1" step="0.01" value="0">
+            (0 &rarr; 1)
+            <br>
+            <label for="Bi_spinbox">Biot numer (Bi):</label>
+            <input type="number" id="Bi_spinbox" min="0.1" max="1000" step="0.1" value="1">
+            (0.1 &rarr; 1000)
+            <br>
+        </fieldset>
+        <br>
+        <fieldset>
+            <legend>Point Parameters</legend>
+            <label for="T_r_spinbox">Relative Temperature (T<sub>r</sub>):</label>
+            <input type="number" id="T_r_spinbox" min="0" max="1" step="0.01" value="0.5">
+            (0 &rarr; 1)
+            <br>
+            <label for="Fo_spinbox">Fourier number (F<sub>o</sub>):&emsp;&emsp;&nbsp;&nbsp;</label>
+            <input type="number" id="Fo_spinbox" min="0.001" max="1000" step="0.001" value="1">
+            (0.001 &rarr; 1000)
+            <br>
+        </fieldset>
+
+    </div>
+
+
+    <script src="interp.js"></script>
+    <script src="simdata.js"></script>
+    <script src="plot.js"></script>
+    <script src="update.js"></script>
+</body>
+
+</html>
