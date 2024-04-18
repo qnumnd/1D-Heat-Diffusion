@@ -125,9 +125,29 @@ plt.init_plot = function () {
     Plotly.newPlot('plot', this.plotData, this.layout);
 }
 
-plt.init_params(simdata)
-plt.interp_data()
-plt.interp_T_r()
-// plt.interp_Fo()
-plt.init_plot()
+model_params = {
+    inf_plate: {
+        simdata: simdata_plate,
+        relative_x_label: "Relative x (x/R):",
+        title: "Temperature response plot - Infinite Plate"
+    },
+    inf_cylinder: {
+        simdata: simdata_cylinder,
+        relative_x_label: "Relative r (r/R):",
+        title: "Temperature response plot - Infinite Cylinder"
+    },
+}
+
+function plot() {
+    var model = document.getElementById("models").value;
+    document.getElementById("label_x_r_spinbox").textContent = model_params[model].relative_x_label
+    document.getElementById("title").textContent = model_params[model].title
+    plt.init_params(model_params[model].simdata)
+    plt.interp_data()
+    plt.interp_T_r()
+    // plt.interp_Fo()
+    plt.init_plot()
+}
+
+plot()
 

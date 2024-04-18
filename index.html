@@ -39,6 +39,13 @@
         legend {
             padding: 2px;
         }
+
+        #x_r_spinbox,
+        #Bi_spinbox,
+        #T_r_spinbox,
+        #Fo_spinbox {
+            width: 150px;
+        }
     </style>
     <!-- icon -->
     <link rel="icon" type="image/x-icon"
@@ -47,22 +54,24 @@
 
 <body>
     <div class="container">
+        <!-- Plot -->
+        <h1 id="title">Temperature response plot</h1>
+        <div id="plot"></div>
         <!-- Model -->
         <label for="model">Model:</label>
-        <select name="models" id="models">
-            <option value="1d_inf_plate">1D Infinite Plate</option>
+        <select name="models" id="models" , onchange="plot()">
+            <option value="inf_plate">1D Infinite Plate</option>
+            <option value="inf_cylinder">1D Infinite Cylinder</option>
         </select>
-        <!-- Plot -->
-        <h1>Temperature response plot</h1>
-        <div id="plot"></div>
+        <!-- Parameters -->
         <fieldset>
             <legend>Line Parameters</legend>
-            <label for="x_r_spinbox">Relative x (x/L):</label>
-            <input type="number" id="x_r_spinbox" min="0" max="1" step="0.01" value="0">
+            <label for="x_r_spinbox" id="label_x_r_spinbox">Relative x (x/L):</label>
+            <input type="number" id="x_r_spinbox" min="0" max="1" step="0.01" value="0" maxlength="100">
             (0 &rarr; 1)
             <br>
             <label for="Bi_spinbox">Biot numer (Bi):</label>
-            <input type="number" id="Bi_spinbox" min="0.1" max="1000" step="0.1" value="1">
+            <input type="number" id="Bi_spinbox" min="0.1" max="1000" step="0.1" value="1" maxlength="10">
             (0.1 &rarr; 1000)
             <br>
         </fieldset>
